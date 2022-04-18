@@ -1,17 +1,31 @@
 const mongoose = require('mongoose');
 
-const dbConnection =async() => {
 
+
+const dbConnection = async() => {
 
     try {
-       await mongoose.connect(process.env.BD_CNN,{
-           userNewUrlParser: true,
-           useUnifiedTopology: true,
-           useCreteIndex: true
-       });
-       console.log('bdd online');
+        
+        // await mongoose.connect( process.env.BD_CNN, {
+        //     useNewUrlParser: true,
+        //     useUnifiedTopology: true
+           
+        // }
+        await mongoose.connect( process.env.BD_CNN );
+
+        console.log('DB Online');
+
+
     } catch (error) {
-        console.error(error);
-        throw new Error('Erorr a la hora de inicialización bdd');
+        console.log(error);
+        throw new Error('Error a la hora de inicializad DB');
     }
+
+
+
+}
+
+
+module.exports = {
+    dbConnection
 }
